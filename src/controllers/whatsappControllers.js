@@ -10,13 +10,26 @@ export const verifyToken = (req,res ) => {
         if(challenge != null && token==accessToken){
             res.send(challenge)
         }else{
-            res.status(400).send()
+            res.status(400).send("accesstoken invalido")
         }
     } catch (error) {
-        res.status(400).send(   )
+        res.status(400).send()
     }
 }
 
 export const receivedMessage = (req,res) =>{
-    res.send("received message")
+    try {
+
+        var number =req.body.entry[0].changes[0].value.messages[0].from;
+        var textazo =req.body.entry[0].changes[0].value.messages[0].text.body;
+        var type = req.body.entry[0].changes[0].value.messages[0].type
+        console.log("message",req.body)
+        console.log("textazo", textazo)
+        console.log("number", number)
+        console.log("type", type)
+        res.send("EVENT_RECEIVED")
+        
+    } catch (error) {
+        res.send("EVENT_RECEIVED")
+    }
 }
