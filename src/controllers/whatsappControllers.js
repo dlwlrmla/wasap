@@ -23,13 +23,45 @@ export const receivedMessage = (req,res) =>{
         var number =req.body.entry[0].changes[0].value.messages[0].from;
         var textazo =req.body.entry[0].changes[0].value.messages[0].text.body;
         var type = req.body.entry[0].changes[0].value.messages[0].type
-        console.log("message",req.body)
-        console.log("textazo", textazo)
-        console.log("number", number)
-        console.log("type", type)
+        let entry = (req.body["entry"])[0]
+        let changes = (entry["changes"])[0]
+        let value = changes["value"]
+        let messageObject = value["messages"]
+
+        if( typeof messageObject != null){
+            let messages = messageObject[0]
+            let text = getTextUser(messages)
+            console.log(text)
+
+        }
+
         res.send("EVENT_RECEIVED")
         
     } catch (error) {
         res.send("EVENT_RECEIVED")
     }
+}
+
+const getTextUser = (message) => {
+    let text = ""
+    let typeMessage = message["type"]
+    if(typeMessage == "text"){
+        text = (message["text"]["body"])
+    }else if( typeMessage == "interactive"){
+        let interactiveObject = message["interactive"]
+        let typeInteractive  = interactiveObject["type"]
+        console.log(interactiveObject)
+
+        if(typeInteractive == "button_reply"){
+            text = (interactiveObject["button_reply"]["title"])
+        }else if(typeInteractive == "list_reply"){
+            text = (interactiveObject["list_reply"]["title"])
+        }else{
+            console.log("sin mensaje ")
+        }
+
+    }else{
+        console.log("sin mensaje 2")
+    }
+    return text
 }
