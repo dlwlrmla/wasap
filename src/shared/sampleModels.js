@@ -11,8 +11,60 @@ export const SampleMessage = (text, number) => {
     return data
 }
 
-
 export const SampleList = (number) => {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "*Encuentra tu atención aquí 👇*"
+            },
+            "footer": {
+                "text": "Selecione una de las opciones"
+            },
+            "action": {
+                "button": "Ver opciones",
+                "sections": [
+                    {
+                        "title": "Servicios",
+                        "rows": [
+                            {
+                                "id": "main-servicios",
+                                "title": "Servicios",
+                                "description": "-- aquí van los servicios --"
+                            },
+                            {
+                                "id": "main-soporte",
+                                "title": "Soporte Técnico",
+                                "description": "-- aquí va el soporte --"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Atención Comercial",
+                        "rows": [
+                            {
+                                "id": "main-atencion",
+                                "title": "Atención Comercial",
+                                "description": "-- aquí va la atención comercial --"
+                            },
+                            {
+                                "id": "main-productos",
+                                "title": "Productos",
+                                "description": "-- aquí van los Productos --"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+
+/* export const SampleList = (number) => {
     const data = JSON.stringify(
         {
             "messaging_product": "whatsapp",
@@ -57,7 +109,7 @@ export const SampleList = (number) => {
     )
     return data
 }
-
+ */
 export const SampleMessageButton = ( number) => {
     const data =JSON.stringify(
         {
@@ -92,4 +144,40 @@ export const SampleMessageButton = ( number) => {
         }
     )
              return data 
+}
+
+export const  SampleImage = (number) =>{
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://agencyagartha.cl/wp-content/uploads/2023/03/logo2.jpg"
+        },
+    });
+    return data;
+}
+
+export const SampleAudio = (number) => {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "audio",
+        "audio": {
+            "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/audio_whatsapp.mp3"
+        },
+    });
+    return data;
+}
+
+export const SampleVideo = (number) => {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "video",
+        "video": {
+            "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/video_whatsapp.mp4"
+        },
+    });
+    return data;
 }

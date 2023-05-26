@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 import { SendMessageWhatsApp } from "../services/whatsappService.js"
 import { SampleList, SampleMessage, SampleMessageButton } from "../shared/sampleModels.js"
+import { processMessage } from "../shared/processMessage.js"
 dotenv.config()
 
 export const verifyToken = (req,res ) => {
@@ -42,9 +43,9 @@ export const receivedMessage = (req,res) =>{
         console.log(req.body)
 /*         let model = SampleMessage(textazo, number)
         SendMessageWhatsApp(model) */
-        let model2 = SampleMessageButton(number)
-        SendMessageWhatsApp(model2)
-
+        if(textazo != null && number != null){
+            processMessage(textazo, number)
+        }
         res.send("EVENT_RECEIVED")  
         
     } catch (error) {
@@ -52,26 +53,28 @@ export const receivedMessage = (req,res) =>{
     }
 }
 
-const getTextUser = (message) => {
-    let text = ""
-    let typeMessage = message["type"]
+function GetTextUser(messages){
+    var text = "";
+    var typeMessage = messages["type"];
     if(typeMessage == "text"){
-        text = (message["text"]["body"])
-    }else if( typeMessage == "interactive"){
-        let interactiveObject = message["interactive"]
-        let typeInteractive  = interactiveObject["type"]
-        console.log(interactiveObject)
-
-        if(typeInteractive == "button_reply"){
-            text = (interactiveObject["button_reply"]["title"])
-        }else if(typeInteractive == "list_reply"){
-            text = (interactiveObject["list_reply"]["title"])
-        }else{
-            console.log("sin mensaje ")
-        }
-
-    }else{
-        console.log("sin mensaje 2")
+      text = (messages["text"])["body"];
     }
-    return text
-}
+    else if(typeMessage == "interactive"){
+  
+      var interactiveObject = messages["interactive"];
+      var typeInteractive = interactiveObject["type"];
+  
+      if(typeInteractive == "button_reply"){
+        text = (interactiveObject["button_reply"]["title"]);
+      }
+      else if(typeInteractive == "list_reply"){
+        text = (interactiveObject["list_reply"]["title"]);
+  
+      }else{
+        myConsole.log("Sin mensaje");
+      }
+    }else{
+      myConsole.log("Sin mensaje");
+    }
+    return text;
+  }
