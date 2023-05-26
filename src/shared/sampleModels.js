@@ -58,7 +58,7 @@ export const SampleList = (number) => {
     return data
 }
 
-export const MessageButton = ( number) => {
+export const SampleMessageButton = ( number) => {
     const data =JSON.stringify(
         {
             "messaging_product": "whatsapp",
