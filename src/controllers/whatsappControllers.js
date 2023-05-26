@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import { SendMessageWhatsApp } from "../services/whatsappService.js"
+import { SampleMessage } from "../shared/sampleModels.js"
 dotenv.config()
 
 export const verifyToken = (req,res ) => {
@@ -35,11 +36,13 @@ export const receivedMessage = (req,res) =>{
             console.log(text)
 
         } */
+        console.log(type)
         console.log(number)
         console.log(textazo)
-        SendMessageWhatsApp(textazo, number)
+        let model = SampleMessage(textazo, number)
+        SendMessageWhatsApp(model)
 
-        res.send("EVENT_RECEIVED")
+        res.send("EVENT_RECEIVED")  
         
     } catch (error) {
         res.send("EVENT_RECEIVED")

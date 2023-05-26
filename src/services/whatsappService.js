@@ -1,16 +1,6 @@
 import https from "https"
 
-export const SendMessageWhatsApp = (text, number) =>{
-
-    const data =JSON.stringify({
-        "messaging_product": "whatsapp",
-        "to" : number,
-        "text" : {
-            "body": text
-        },
-        "type": "text"
-    })
-
+export const SendMessageWhatsApp = (data) =>{
     const options = {
         host: "graph.facebook.com",
         // El "path" es unico, ya que depende de la cuenta de Meta.

@@ -1,4 +1,16 @@
 
+export const SampleMessage = (text, number) => {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to" : number,
+        "text" : {
+            "body": text
+        },
+        "type": "text"
+    })
+    return data
+}
+
 
 export const SampleList = (number) => {
     const data = JSON.stringify(
