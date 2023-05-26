@@ -39,6 +39,7 @@ export const receivedMessage = (req,res) =>{
         console.log(type)
         console.log(number)
         console.log(textazo)
+        console.log(req.body)
 /*         let model = SampleMessage(textazo, number)
         SendMessageWhatsApp(model) */
         let model2 = SampleMessageButton(number)
