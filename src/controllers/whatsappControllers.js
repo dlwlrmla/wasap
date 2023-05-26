@@ -1,6 +1,9 @@
+import dotenv from "dotenv"
+dotenv.config()
+
 export const verifyToken = (req,res ) => {
     try {
-        let accessToken = "123"
+        let accessToken = process.env.ACCESSTOKEN
         let token = req.query["hub.verify_token"]
         let challenge = req.body["hub.challenge"]
 
