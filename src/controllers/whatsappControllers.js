@@ -6,6 +6,8 @@ export const verifyToken = (req,res ) => {
 
         if(challenge != null && token==accessToken){
             res.send(challenge)
+        }else{
+            res.status(400).send()
         }
     } catch (error) {
         res.status(400).send(   )
