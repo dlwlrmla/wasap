@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+import { SendMessageWhatsApp } from "../services/whatsappService.js"
 dotenv.config()
 
 export const verifyToken = (req,res ) => {
@@ -23,7 +24,7 @@ export const receivedMessage = (req,res) =>{
         var number =req.body.entry[0].changes[0].value.messages[0].from;
         var textazo =req.body.entry[0].changes[0].value.messages[0].text.body;
         var type = req.body.entry[0].changes[0].value.messages[0].type
-        let entry = (req.body["entry"])[0]
+/*         let entry = (req.body["entry"])[0]
         let changes = (entry["changes"])[0]
         let value = changes["value"]
         let messageObject = value["messages"]
@@ -33,7 +34,10 @@ export const receivedMessage = (req,res) =>{
             let text = getTextUser(messages)
             console.log(text)
 
-        }
+        } */
+        console.log(number)
+        console.log(textazo)
+        SendMessageWhatsApp(textazo, number)
 
         res.send("EVENT_RECEIVED")
         

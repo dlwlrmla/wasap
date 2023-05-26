@@ -8,5 +8,4 @@ app.use(express.json())
 app.use("/whatsapp", router)
 app.listen(PORT, () => {
     console.log(`app running on port http://localhost:${PORT}/:`)
-    console.log(process.env.ACCESSTOKEN)
 })
